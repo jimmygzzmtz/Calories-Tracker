@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Log Food</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-item>
+        <ion-label>Food</ion-label>
+        <ion-select placeholder="List from database">
+          <ion-select-option value="db1">Food1</ion-select-option>
+          <ion-select-option value="db2">Food2</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+  <ion-item>
+    <ion-label>Quantity</ion-label>
+    <ion-input placeholder='1'></ion-input>
+  </ion-item>
+
+  <ion-row>
+      <ion-button (click)="dismiss()">Dismiss</ion-button>
+      <ion-button (click)="save()">Save</ion-button>
+  </ion-row>
+  
+
+</ion-content>

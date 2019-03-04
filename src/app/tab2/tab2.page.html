@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Food Database
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item-sliding *ngFor="let food of foods">
+          <ion-item>
+              <ion-label>{{food.name}}</ion-label>
+              <ion-label color='medium'>{{food.calories}} calories</ion-label>
+              
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="editFood(food)">Edit</ion-item-option>
+            <ion-item-option color="danger" (click)="deleteFood(food)">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+      <!--
+      <ion-item (click)="detailItem()" detail>
+          <ion-label>
+            Button Item with Detail Arrow
+          </ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-label>Pizza Slice</ion-label>
+          <ion-label color="medium">250 calories</ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-label>Milkshake</ion-label>
+          <ion-label color="medium">500 calories</ion-label>
+        </ion-item>
+        <ion-item detail>
+          <ion-label>French Fries</ion-label>
+          <ion-label color="medium">400 calories</ion-label>
+        </ion-item>
+      //-->
+      
+<!--
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>Pizza Slice</ion-card-title>
+    </ion-card-header>
+    <ion-row>
+      <ion-card-content>
+          <p>250 calories</p>
+      </ion-card-content>
+      <ion-button end size="small" shape="round">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+      <ion-button end size="small" shape="round">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-row>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Milkshake</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>500 calories</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>French Fries</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>400 calories</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input placeholder="Pizza Slice"></ion-input>
+    </ion-item>
+  <ion-item>
+      <ion-label>Calories</ion-label>
+      <ion-input placeholder="250"></ion-input>
+    </ion-item>
+//-->
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addFood()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
