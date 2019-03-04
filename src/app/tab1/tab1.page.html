@@ -15,11 +15,16 @@
                 <ion-label color='medium'>{{log.calories}} cal</ion-label>
             </ion-item>
             <ion-item-options side="end">
-              <ion-item-option (click)="editFood(food)">Edit</ion-item-option>
-              <ion-item-option color="danger" (click)="deleteFood(food)">Delete</ion-item-option>
+              <ion-item-option (click)="editLog(log)">Edit</ion-item-option>
+              <ion-item-option color="danger" (click)="deleteLog(log)">Delete</ion-item-option>
             </ion-item-options>
           </ion-item-sliding>
       </ion-list>
+    <ion-card>
+      <ion-card-content>
+        <h1>Total: {{ this.total() }} calories</h1>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">

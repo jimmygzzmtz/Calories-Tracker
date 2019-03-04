@@ -18,6 +18,24 @@ export class Tab2Page {
       {name: 'French Fries', calories: 400}
     ];
     */
+   // set a key/value
+   //this.storage.set('foodsArr', foods);
+   //this.storage.set('foodsArr', JSON.stringify(this.foods));
+ 
+   // Or to get a key/value pair
+   
+   this.storage.get('foodsArr').then((val) => {
+     if (val != "[]"){
+      //this.foods = val
+      this.foods = JSON.parse(val)
+      console.log('Passed to foods');
+     }
+     else{
+      this.storage.set('foodsArr', JSON.stringify(this.foods));
+     }
+     //console.log('Your foods are', val);
+   });
+   
   }
 
   async editFood(food) {
@@ -46,6 +64,7 @@ export class Tab2Page {
 
                 if(index > -1){
                   this.foods[index] = data;
+                  this.storage.set('foodsArr', JSON.stringify(this.foods));
                 }
             }
         }
@@ -77,7 +96,17 @@ export class Tab2Page {
         {
             text: 'Add',
             handler: data => {
-                this.foods.push(data);
+                if (this.foods == null){
+                  this.foods = [];
+                  this.foods.push({
+                    name: data.name,
+                    calories: data.calories
+                  })
+                }
+                else{
+                  this.foods.push(data);
+                }
+                this.storage.set('foodsArr', JSON.stringify(this.foods));
             }
         }
     ]
@@ -93,6 +122,7 @@ export class Tab2Page {
 
         if(index > -1){
             this.foods.splice(index, 1);
+            this.storage.set('foodsArr', JSON.stringify(this.foods));
         }
 
   }

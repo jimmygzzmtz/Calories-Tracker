@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { LogModalPage } from './log-modal.page';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,7 +21,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    IonicStorageModule.forRoot()
   ],
   declarations: [LogModalPage]
 })
