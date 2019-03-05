@@ -20,11 +20,21 @@
             </ion-item-options>
           </ion-item-sliding>
       </ion-list>
+    
     <ion-card>
       <ion-card-content>
-        <h1>Total: {{ this.total() }} calories</h1>
+        <h1>Today's Total: {{ this.total() }} calories</h1>
       </ion-card-content>
     </ion-card>
+
+    
+    <ion-card>
+      <ion-card-content>
+        <h1>Remaining Today: {{ this.getRemaining() }} calories</h1>
+      </ion-card-content>
+    </ion-card>
+    
+
 </ion-content>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">

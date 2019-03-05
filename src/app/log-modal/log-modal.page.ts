@@ -21,14 +21,11 @@ export class LogModalPage implements OnInit {
     
     this.storage.get('foodsArr').then((val) => {
       if (val != "[]"){
-       //this.foods = val
        this.foods = JSON.parse(val)
-       console.log('Passed to foods');
       }
       else{
        this.storage.set('foodsArr', JSON.stringify(this.foods));
       }
-      //console.log('Your foods are', val);
     });
     
 
@@ -42,7 +39,6 @@ export class LogModalPage implements OnInit {
   }
 
   save(){
-    console.log('lol ' + this.foodslct)
     this.foodslctSend = JSON.parse(this.foodslct);
     this.foodslctSend.quantity = this.qty;
     this.foodslctSend.calories = +this.foodslctSend.calories * +this.qty;

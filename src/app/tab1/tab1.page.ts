@@ -12,30 +12,20 @@ import { Storage } from '@ionic/storage';
 })
 
 export class Tab1Page {
+  profile: any = {};
   logs: any = [];
 
   sum: number = 0;
 
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
-    
-    /*
-    this.logs = [
-      {name: 'Pizza Slice', calories: 1000, quantity: 4},
-      {name: 'Milkshake', calories: 500, quantity: 1},
-      {name: 'French Fries', calories: 1200, quantity: 3}
-    ];
-    */
 
     this.storage.get('logsArr').then((val) => {
       if (val != "[]"){
-       //this.foods = val
        this.logs = JSON.parse(val)
-       console.log('Passed to logs');
       }
       else{
        this.storage.set('logsArr', JSON.stringify(this.logs));
       }
-      //console.log('Your foods are', val);
     });
     
   }
@@ -47,6 +37,21 @@ export class Tab1Page {
     }
     return this.sum;
   }
+
+  ionViewWillEnter(){
+    this.storage.get('userProfile').then((val) => {
+      if (val != null){
+       this.profile = JSON.parse(val)
+      }
+      else{
+       this.storage.set('userProfile', JSON.stringify(this.profile));
+      }
+    });
+  }
+
+  getRemaining() {
+    return +this.profile.tdee - +this.sum;
+  }
   
 
   async logFood() {
@@ -56,9 +61,7 @@ export class Tab1Page {
 
     modal.onDidDismiss()
       .then((data) => {
-        console.log("Data =>", data)
         if (data.data != undefined){
-          //this.logs.push(JSON.parse(data.data));
           if (this.logs == null){
             this.logs = [];
             this.logs.push({
@@ -79,7 +82,6 @@ export class Tab1Page {
   }
 
   deleteLog(log) {
-    console.log("Hello delete");
 
     let index = this.logs.indexOf(log);
 
@@ -91,7 +93,6 @@ export class Tab1Page {
   }
 
   async editLog(log) {
-    console.log("Hello edit");
 
     const modal = await this.modalController.create({
       component: LogModalPage
@@ -99,7 +100,6 @@ export class Tab1Page {
 
     modal.onDidDismiss()
       .then((data) => {
-        console.log("Data =>", data)
         if (data.data != undefined){
           let index = this.logs.indexOf(log);
 

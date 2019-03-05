@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      About
+      Profile
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-item>
+    <ion-label>Height (cm)</ion-label>
+    <ion-input [(ngModel)]="userHeight" value={{profile.height}}></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Weight (kg)</ion-label>
+    <ion-input [(ngModel)]="userWeight" value={{profile.weight}}></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Age</ion-label>
+    <ion-input [(ngModel)]="userAge" value={{profile.age}}></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Gender</ion-label>
+    <ion-select [(ngModel)]="gender" placeholder="Select One">
+      <ion-select-option value="m">Male</ion-select-option>
+      <ion-select-option value="f">Female</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Activity Level</ion-label>
+    <ion-select [(ngModel)]="activityLevel" placeholder="Select One">
+      <ion-select-option value="s">Sedentary</ion-select-option>
+      <ion-select-option value="l">Lightly Active</ion-select-option>
+      <ion-select-option value="m">Moderately Active</ion-select-option>
+      <ion-select-option value="v">Very Active</ion-select-option>
+      <ion-select-option value="e">Extremely Active</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card>
+    <ion-card-content>
+      <h1>TDEE: {{ this.getTDEE() }} calories</h1>
+    </ion-card-content>
+  </ion-card>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="saveProfile()">
+    <ion-icon name="checkmark"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

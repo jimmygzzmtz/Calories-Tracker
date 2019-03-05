@@ -11,29 +11,14 @@ export class Tab2Page {
   foods: any = [];
 
   constructor(public navCtrl: NavController, public alertController: AlertController, private storage: Storage){
-    /*
-    this.foods = [
-      {name: 'Pizza Slice', calories: 250},
-      {name: 'Milkshake', calories: 500},
-      {name: 'French Fries', calories: 400}
-    ];
-    */
-   // set a key/value
-   //this.storage.set('foodsArr', foods);
-   //this.storage.set('foodsArr', JSON.stringify(this.foods));
- 
-   // Or to get a key/value pair
    
    this.storage.get('foodsArr').then((val) => {
      if (val != "[]"){
-      //this.foods = val
       this.foods = JSON.parse(val)
-      console.log('Passed to foods');
      }
      else{
       this.storage.set('foodsArr', JSON.stringify(this.foods));
      }
-     //console.log('Your foods are', val);
    });
    
   }
@@ -116,7 +101,6 @@ export class Tab2Page {
   }
 
   deleteFood(food) {
-    console.log("Hello delete");
 
     let index = this.foods.indexOf(food);
 
