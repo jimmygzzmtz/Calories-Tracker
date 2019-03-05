@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -17,7 +17,7 @@ export class Tab3Page {
   activityLevel: any;
   gender: any;
 
-  constructor(public navCtrl: NavController, private storage: Storage){
+  constructor(public navCtrl: NavController, private storage: Storage, public alertController: AlertController){
 
   }
 
@@ -41,8 +41,22 @@ export class Tab3Page {
     });
   }
 
-  saveProfile() {
+  async saveProfile() {
     var BMR = 0;
+
+    if (this.gender == undefined || this.activityLevel == undefined || this.userHeight == "" || this.userWeight == "" || this.userAge == ""){
+      const alert = await this.alertController.create({
+        header: 'Please fill in all the inputs',
+        buttons: [
+          {
+              text: 'OK'
+          }
+      ]
+      });
+      await alert.present();
+      
+      return;
+    }
   
     if (this.gender == "m"){
       BMR = (+this.userHeight * 6.25) + (+this.userWeight * 9.99) - (+this.userAge * 4.92) + 5

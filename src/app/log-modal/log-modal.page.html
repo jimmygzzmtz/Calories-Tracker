@@ -8,18 +8,18 @@
 
     <ion-item>
         <ion-label>Food</ion-label>
-        <ion-select [(ngModel)]="foodslct" placeholder="List from database">
+        <ion-select [(ngModel)]="foodslct" placeholder="List from database" >
           <ion-select-option  *ngFor="let food of foods" [value]="toStr(food)">{{food.name}}: {{food.calories}} cal</ion-select-option>
         </ion-select>
       </ion-item>
 
   <ion-item>
     <ion-label>Quantity</ion-label>
-    <ion-input [(ngModel)]="qty" placeholder='1'></ion-input>
+    <ion-input [(ngModel)]="foodQty" placeholder="1" ></ion-input>
   </ion-item>
 
   <ion-row>
-      <ion-button (click)="dismiss()">Dismiss</ion-button>
+      <ion-button (click)="dismiss()">Cancel</ion-button>
       <ion-button (click)="save()">Save</ion-button>
   </ion-row>
   

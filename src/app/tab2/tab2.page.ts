@@ -45,12 +45,21 @@ export class Tab2Page {
         {
             text: 'Save',
             handler: data => {
+
+              if(data.name != "" && data.calories != ""){
+
                 let index = this.foods.indexOf(food);
 
                 if(index > -1){
                   this.foods[index] = data;
                   this.storage.set('foodsArr', JSON.stringify(this.foods));
                 }
+
+              }
+              else{
+                return false;
+              }
+
             }
         }
     ]
@@ -81,17 +90,24 @@ export class Tab2Page {
         {
             text: 'Add',
             handler: data => {
-                if (this.foods == null){
-                  this.foods = [];
-                  this.foods.push({
-                    name: data.name,
-                    calories: data.calories
-                  })
+                if(data.name != "" && data.calories != ""){
+
+                  if (this.foods == null){
+                    this.foods = [];
+                    this.foods.push({
+                      name: data.name,
+                      calories: data.calories
+                    })
+                  }
+                  else{
+                    this.foods.push(data);
+                  }
+                  this.storage.set('foodsArr', JSON.stringify(this.foods));
+
                 }
                 else{
-                  this.foods.push(data);
+                  return false;
                 }
-                this.storage.set('foodsArr', JSON.stringify(this.foods));
             }
         }
     ]

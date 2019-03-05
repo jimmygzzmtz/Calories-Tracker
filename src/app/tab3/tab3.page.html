@@ -24,7 +24,7 @@
 
   <ion-item>
     <ion-label>Gender</ion-label>
-    <ion-select [(ngModel)]="gender" placeholder="Select One">
+    <ion-select [(ngModel)]="gender" placeholder="Select One" value="{{ profile.gender }}" >
       <ion-select-option value="m">Male</ion-select-option>
       <ion-select-option value="f">Female</ion-select-option>
     </ion-select>
@@ -32,7 +32,7 @@
 
   <ion-item>
     <ion-label>Activity Level</ion-label>
-    <ion-select [(ngModel)]="activityLevel" placeholder="Select One">
+    <ion-select [(ngModel)]="activityLevel" placeholder="Select One" value="{{ profile.activityLevel }}">
       <ion-select-option value="s">Sedentary</ion-select-option>
       <ion-select-option value="l">Lightly Active</ion-select-option>
       <ion-select-option value="m">Moderately Active</ion-select-option>

@@ -102,8 +102,18 @@ export class Tab1Page {
 
   async editLog(log) {
 
+    let log2 = {
+      name: log.name,
+      calories: (+log.calories / +log.quantity).toString()
+    }
+
+
     const modal = await this.modalController.create({
-      component: LogModalPage
+      component: LogModalPage,
+      componentProps: { 
+        foodslct: JSON.stringify(log2),
+        foodQty: log.quantity
+      }
     });
 
     modal.onDidDismiss()
