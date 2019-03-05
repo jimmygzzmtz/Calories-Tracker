@@ -32,9 +32,12 @@ export class Tab1Page {
 
   total(){
     this.sum = 0;
-    for(let i = 0; i<this.logs.length; i++){
-      this.sum = this.sum + this.logs[i].calories;    
+    if (this.logs != undefined){
+      for(let i = 0; i<this.logs.length; i++){
+        this.sum = this.sum + this.logs[i].calories;    
+      }
     }
+    
     return this.sum;
   }
 
@@ -50,7 +53,12 @@ export class Tab1Page {
   }
 
   getRemaining() {
-    return +this.profile.tdee - +this.sum;
+    if (this.profile.tdee == undefined){
+      return "-";
+    }
+    else{
+      return +this.profile.tdee - +this.sum;
+    }
   }
   
 

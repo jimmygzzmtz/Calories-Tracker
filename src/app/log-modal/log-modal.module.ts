@@ -5,14 +5,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LogModalPage } from './log-modal.page';
-
 import { IonicStorageModule } from '@ionic/storage';
 
 const routes: Routes = [
   {
     path: '',
-    component: LogModalPage
   }
 ];
 
@@ -24,6 +21,5 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     IonicStorageModule.forRoot()
   ],
-  declarations: [LogModalPage]
 })
 export class LogModalPageModule {}

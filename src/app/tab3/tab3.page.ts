@@ -22,7 +22,12 @@ export class Tab3Page {
   }
 
   getTDEE() {
-    return this.profile.tdee
+    if (this.profile.tdee == undefined){
+      return "-";
+    }
+    else{
+      return this.profile.tdee;
+    }
   }
 
   ionViewWillEnter(){
