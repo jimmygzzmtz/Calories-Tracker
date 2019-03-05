@@ -15,8 +15,6 @@ export class LogModalPage implements OnInit {
 
   toStr = JSON.stringify;
 
-  qty: string;
-
   foodQty;
 
   constructor(public modalController: ModalController, private storage: Storage, public alertController: AlertController ) {
@@ -24,7 +22,6 @@ export class LogModalPage implements OnInit {
     this.storage.get('foodsArr').then((val) => {
       if (val != "[]"){
        this.foods = JSON.parse(val)
-       console.log("orig" + JSON.stringify(this.foods[0]));
       }
       else{
        this.storage.set('foodsArr', JSON.stringify(this.foods));
@@ -41,10 +38,10 @@ export class LogModalPage implements OnInit {
   }
 
   async save(){
-    if (this.qty != undefined && this.foodslct != undefined){
+    if (this.foodQty != undefined && this.foodslct != undefined){
       this.foodslctSend = JSON.parse(this.foodslct);
-      this.foodslctSend.quantity = this.qty;
-      this.foodslctSend.calories = +this.foodslctSend.calories * +this.qty;
+      this.foodslctSend.quantity = this.foodQty;
+      this.foodslctSend.calories = +this.foodslctSend.calories * +this.foodQty;
       this.modalController.dismiss(this.foodslctSend);
     }
     else{
