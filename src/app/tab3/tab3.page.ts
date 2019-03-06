@@ -12,6 +12,7 @@ export class Tab3Page {
   userHeight: any;
   userWeight: any;
   userAge: any;
+  weightGoal: any;
   TDEE: any;
 
   activityLevel: any;
@@ -80,8 +81,15 @@ export class Tab3Page {
     if (this.activityLevel == "e"){
       this.TDEE = BMR * 1.9
     }
+
+    if(this.weightGoal == "l"){
+      this.TDEE = this.TDEE - 300;
+    }
+    if(this.weightGoal == "g"){
+      this.TDEE = this.TDEE + 300;
+    }
     
-    let tmpUser = {height: this.userHeight, weight: this.userWeight, age: this.userAge, tdee: Math.round(this.TDEE), gender: this.gender, activityLevel: this.activityLevel};
+    let tmpUser = {height: this.userHeight, weight: this.userWeight, age: this.userAge, tdee: Math.round(this.TDEE), gender: this.gender, activityLevel: this.activityLevel, weightGoal: this.weightGoal};
     this.profile = tmpUser;
     this.storage.set('userProfile', JSON.stringify(tmpUser));
 

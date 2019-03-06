@@ -41,6 +41,15 @@
     </ion-select>
   </ion-item>
 
+  <ion-item>
+      <ion-label>Weight Goal</ion-label>
+      <ion-select [(ngModel)]="weightGoal" placeholder="Maintain Weight" value="{{ profile.weightGoal }}">
+        <ion-select-option value="l">Lose Weight</ion-select-option>
+        <ion-select-option value="m">Maintain Weight</ion-select-option>
+        <ion-select-option value="g">Gain Weight</ion-select-option>
+      </ion-select>
+    </ion-item>
+
   <ion-card>
     <ion-card-content>
       <h1>TDEE: {{ this.getTDEE() }} calories</h1>

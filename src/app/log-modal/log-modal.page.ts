@@ -15,6 +15,8 @@ export class LogModalPage implements OnInit {
 
   toStr = JSON.stringify;
 
+  currentDate: Date;
+
   foodQty;
 
   constructor(public modalController: ModalController, private storage: Storage, public alertController: AlertController ) {
@@ -42,6 +44,7 @@ export class LogModalPage implements OnInit {
       this.foodslctSend = JSON.parse(this.foodslct);
       this.foodslctSend.quantity = this.foodQty;
       this.foodslctSend.calories = +this.foodslctSend.calories * +this.foodQty;
+      this.foodslctSend.date = this.currentDate;
       this.modalController.dismiss(this.foodslctSend);
     }
     else{

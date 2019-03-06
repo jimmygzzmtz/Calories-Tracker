@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      My Day
+      My Day: {{currentDate | date}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
-        <ion-item-sliding *ngFor="let log of logs">
+        <ion-item-sliding *ngFor="let log of getLogs()">
             <ion-item>
                 <ion-label>{{log.name}}</ion-label>
                 <ion-label color='medium'>x{{log.quantity}}</ion-label>
@@ -23,19 +23,24 @@
     
     <ion-card>
       <ion-card-content>
-        <h1>Today's Total: {{ this.total() }} calories</h1>
+        <h1>Day's Total: {{ this.total() }} calories</h1>
       </ion-card-content>
     </ion-card>
 
     
     <ion-card>
       <ion-card-content>
-        <h1>Remaining Today: {{ this.getRemaining() }} calories</h1>
+        <h1>Remaining in Day: {{ this.getRemaining() }} calories</h1>
       </ion-card-content>
     </ion-card>
     
 
 </ion-content>
+
+<ion-row>
+  <ion-button (click)="previousDay()">Previous Day</ion-button>
+  <ion-button (click)="nextDay()">Next Day</ion-button>
+</ion-row>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="logFood()">

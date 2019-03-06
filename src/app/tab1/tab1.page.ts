@@ -17,6 +17,8 @@ export class Tab1Page {
 
   sum: number = 0;
 
+  currentDate = new Date;
+
   constructor(public navCtrl: NavController, public modalController: ModalController, private storage: Storage){
 
     this.storage.get('logsArr').then((val) => {
@@ -32,13 +34,21 @@ export class Tab1Page {
 
   total(){
     this.sum = 0;
-    if (this.logs != undefined){
-      for(let i = 0; i<this.logs.length; i++){
-        this.sum = this.sum + this.logs[i].calories;    
+    var logs2: any = this.logs.filter(checkDate, this);
+
+    function checkDate(log) {
+      var logDate = new Date(log.date);
+      return (logDate.getDate() == this.currentDate.getDate() && logDate.getMonth() == this.currentDate.getMonth() && logDate.getFullYear() == this.currentDate.getFullYear());
+    } 
+
+    if (logs2 != undefined){
+      for(let i = 0; i<logs2.length; i++){
+        this.sum = this.sum + logs2[i].calories;    
       }
     }
     
     return this.sum;
+
   }
 
   ionViewWillEnter(){
@@ -64,7 +74,10 @@ export class Tab1Page {
 
   async logFood() {
     const modal = await this.modalController.create({
-      component: LogModalPage
+      component: LogModalPage,
+      componentProps: { 
+        currentDate: this.currentDate
+      }
     });
 
     modal.onDidDismiss()
@@ -75,7 +88,8 @@ export class Tab1Page {
             this.logs.push({
               name: data.data.name,
               calories: data.data.calories,
-              quantity: data.data.quantity
+              quantity: data.data.quantity,
+              date: this.currentDate
             })
           }
           else{
@@ -100,6 +114,26 @@ export class Tab1Page {
 
   }
 
+  previousDay() {
+    var result = new Date(this.currentDate.valueOf());
+    result.setDate(result.getDate() - 1);
+    this.currentDate = result;
+  }
+
+  nextDay() {
+    var result = new Date(this.currentDate.valueOf());
+    result.setDate(result.getDate() + 1);
+    this.currentDate = result;
+  }
+
+  getLogs() {
+    function checkDate(log) {
+      var logDate = new Date(log.date);
+      return (logDate.getDate() == this.currentDate.getDate() && logDate.getMonth() == this.currentDate.getMonth() && logDate.getFullYear() == this.currentDate.getFullYear());
+    } 
+    return this.logs.filter(checkDate, this);
+  }
+
   async editLog(log) {
 
     let log2 = {
@@ -112,7 +146,8 @@ export class Tab1Page {
       component: LogModalPage,
       componentProps: { 
         foodslct: JSON.stringify(log2),
-        foodQty: log.quantity
+        foodQty: log.quantity,
+        currentDate: this.currentDate
       }
     });
 
