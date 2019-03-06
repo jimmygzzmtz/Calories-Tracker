@@ -34,7 +34,9 @@ export class Tab1Page {
 
   total(){
     this.sum = 0;
-    var logs2: any = this.logs.filter(checkDate, this);
+    if(this.logs != null){
+      var logs2: any = this.logs.filter(checkDate, this);
+    }   
 
     function checkDate(log) {
       var logDate = new Date(log.date);
@@ -127,11 +129,14 @@ export class Tab1Page {
   }
 
   getLogs() {
+    if(this.logs != null){
+      return this.logs.filter(checkDate, this);
+    }
+
     function checkDate(log) {
       var logDate = new Date(log.date);
       return (logDate.getDate() == this.currentDate.getDate() && logDate.getMonth() == this.currentDate.getMonth() && logDate.getFullYear() == this.currentDate.getFullYear());
     } 
-    return this.logs.filter(checkDate, this);
   }
 
   async editLog(log) {
