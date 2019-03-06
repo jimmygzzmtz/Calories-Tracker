@@ -1,5 +1,7 @@
 {
   "name": "Calories-Tracker",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

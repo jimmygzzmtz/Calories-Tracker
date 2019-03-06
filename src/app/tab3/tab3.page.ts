@@ -45,7 +45,7 @@ export class Tab3Page {
   async saveProfile() {
     var BMR = 0;
 
-    if (this.gender == undefined || this.activityLevel == undefined || this.userHeight == "" || this.userWeight == "" || this.userAge == ""){
+    if (this.gender == undefined || this.activityLevel == undefined || this.weightGoal == undefined || this.userHeight == "" || this.userWeight == "" || this.userAge == ""){
       const alert = await this.alertController.create({
         header: 'Please fill in all the inputs',
         buttons: [
